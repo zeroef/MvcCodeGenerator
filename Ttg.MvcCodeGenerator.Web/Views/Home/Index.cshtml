@@ -1,0 +1,225 @@
+﻿@using Ttg.MvcCodeGenerator.Domain
+@model MvcCodeGenerator.ViewModels.HomeViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<br />
+
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    <label>web config</label>
+                    <input type="text" name="WebConfig" id="WebConfig" value="@Model.WebConfig" class="form-control" />
+                </div>
+
+                <input type="submit" value="Get Connection Strings" class="btn" />
+
+                <br /><br />
+
+                <div class="form-group">
+                    <label>connection strings</label>
+                    <select class="form-control" id="ConnectionString" name="ConnectionString">
+                        @foreach (var item in Model.ConnectionStrings.AllKeys)
+                        {
+                            if (Model.ConnectionString == @Model.ConnectionStrings[item])
+                            {
+                                <option selected="selected" value="@Model.ConnectionStrings[item]">@item</option>
+                            }
+                            else
+                            {
+                                <option value="@Model.ConnectionStrings[item]">@item</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+
+                <input type="submit" value="Get Tables" class="btn" />
+
+                <br /><br />
+                if (!string.IsNullOrEmpty(Model.WebConfig))
+                {
+                    <div class="form-group">
+                        <label>tables</label>
+                        <select class="form-control" id="DatabaseTable" name="DatabaseTable">
+                            @foreach (var item in Model.DatabaseTables)
+                            {
+                                if (Model.DatabaseTable == item)
+                                {
+                                    <option selected="selected" value="@item">@item</option>
+                                }
+                                else
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group"><label>singular object</label>: <input class="form-control" type="text" id="SingluarObject" name="SingularObject" value="@Model.SingularObject" /></div>
+                    <div class="form-group"><label>plural object</label>:<input class="form-control" type="text" id="PluralObject" name="PluralObject" value="@Model.PluralObject" /></div>
+                    <div class="form-group"><label>root namespace</label>:<input class="form-control" type="text" id="RootNamespace" name="RootNamespace" value="@Model.RootNamespace" /></div>
+
+                    <input type="submit" value="Get Objects" class="btn" />
+
+                    <br />
+                    <br />
+
+                    <div class="form-group"><label>domain project</label>:<input class="form-control" type="text" id="DomainLocation" name="DomainLocation" value="@Model.DomainLocation" /></div>
+                    <div class="form-group"><label>service project</label>:<input class="form-control" type="text" id="ServiceLocation" name="ServiceLocation" value="@Model.ServiceLocation" /></div>
+                    <div class="form-group"><label>web admin viewmodels</label>:<input class="form-control" type="text" id="WebAdminViewModelLocation" name="WebAdminViewModelLocation" value="@Model.WebAdminViewModelLocation" /></div>
+                    <div class="form-group"><label>web admin controllers</label>:<input class="form-control" type="text" id="WebAdminControllerLocation" name="WebAdminControllerLocation" value="@Model.WebAdminControllerLocation" /></div>
+                    <br/>
+                    <label>Unit Of Work:</label>
+                    <code id="unitOfWorkCode"><a href="#" data-copy="@Model.UnitOfWorkCode" class="copy">@Model.UnitOfWorkCode</a> </code>
+                    <br/>
+                    <br/>
+                
+                }
+                if (!String.IsNullOrEmpty(Model.DatabaseTable))
+                {
+
+                    if (Model.ProjectFiles.Any())
+                    {
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Project Files</div>                        
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="selectallCreate" checked />
+                                    </th>
+                                    <th>Type</th>
+                                    <th>Filename</th>
+                                    <th>FullPath</th>
+                                    <th>
+                                        <div class="text-center">
+                                            Exsits
+                                        </div>
+                                    </th>                                
+                                    <th>
+                                        <div class="text-center">
+                                            Overwrite Existing
+                                        </div>
+                                    </th>
+                                </tr>
+                                @foreach (ProjectFile projectFile in Model.ProjectFiles)
+                                {
+                                    <tr>
+                                        <th>
+                                            <div class="text-center">
+                                                <input data-val="true" class="checkmeCreate" id="@("Create" + @projectFile.ProjectFileType)" name="@("Create" + @projectFile.ProjectFileType)" type="checkbox" value="true">
+                                                <input type="hidden" value="false" name="@("Create" + @projectFile.ProjectFileType)" />
+                                            </div>
+                                        </th>
+                                        <td>@projectFile.ProjectFileType</td>
+                                        <td>@projectFile.Filename</td>
+                                        <td>@projectFile.FullPath</td>
+                                        <td>
+                                            <div class="text-center">
+                                                @projectFile.Exists
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @if (@projectFile.Exists)
+                                            {
+                                                <div class="text-center">
+                                                    <input data-val="true" class="checkmeOverwrite" id="@("Overwrite" + @projectFile.ProjectFileType)" name="@("Overwrite" + @projectFile.ProjectFileType)" type="checkbox" value="true">
+                                                </div>
+                                            }
+                                            <input type="hidden" value="false" name="@("Overwrite" + @projectFile.ProjectFileType)" />
+                                        </td>
+                                    </tr>
+                                }
+                            
+                                @if (!Model.ProjectFiles.All(w => w.Exists == false))
+                                {
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <div class="text-center">
+                                                Select All    
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-center">
+                                                <input type="checkbox" id="selectallOverwrite" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    }
+
+                    <div class="checkbox">
+                        <label>
+                            <input checked="checked" data-val="true" data-val-required="The EnableRedis field is required." id="EnableRedis" name="EnableRedis" type="checkbox" value="true">
+                            <input name="EnableRedis" type="hidden" value="false">
+                            Enable Redis
+                        </label>
+                    </div>
+                    <br/>
+                    <br/>
+
+
+                    <input type="submit" value="Generate Code" class="btn btn-warning" />
+                
+                }
+            }
+            <br/>
+            <br/>
+        </div>
+    </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//www.steamdev.com/zclip/js/jquery.zclip.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("a.copy").on('click', function(e) {
+            e.preventDefault();
+        }).each(function() {
+            $(this).zclip({
+                path: 'http://www.steamdev.com/zclip/js/ZeroClipboard.swf',
+                copy: function() {
+                    return $(this).data('copy');
+                }
+            });
+        });
+
+        $('.checkmeCreate').each(function () { this.checked = true; });
+
+
+        $('#selectallCreate').click(function (event) {
+            if (this.checked) {
+                $('.checkmeCreate').each(function () {
+                    this.checked = true;
+                });
+            } else {
+                $('.checkmeCreate').each(function () {
+                    this.checked = false;
+                });
+            }
+        });
+
+        $('#selectallOverwrite').click(function (event) {
+            if (this.checked) {
+                $('.checkmeOverwrite').each(function () {
+                    this.checked = true;
+                });
+            } else {
+                $('.checkmeOverwrite').each(function () {
+                    this.checked = false;
+                });
+            }
+        });
+
+    });
+</script>

@@ -1,0 +1,14 @@
+C:\repos\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\bin\Debug\Ttg.MvcCodeGenerator.Service.dll
+C:\repos\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\bin\Debug\Ttg.MvcCodeGenerator.Service.pdb
+C:\repos\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\bin\Debug\Ttg.MvcCodeGenerator.Domain.dll
+C:\repos\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\bin\Debug\Ttg.MvcCodeGenerator.Domain.pdb
+C:\repos\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\obj\Debug\Ttg.MvcCodeGenerator.Service.csprojResolveAssemblyReference.cache
+C:\repos\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\obj\Debug\Ttg.MvcCodeGenerator.Service.dll
+C:\repos\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\obj\Debug\Ttg.MvcCodeGenerator.Service.pdb
+C:\Users\MattyMatt\Documents\GitHub\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\bin\Debug\Ttg.MvcCodeGenerator.Service.dll
+C:\Users\MattyMatt\Documents\GitHub\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\bin\Debug\Ttg.MvcCodeGenerator.Service.pdb
+C:\Users\MattyMatt\Documents\GitHub\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\bin\Debug\Ttg.MvcCodeGenerator.Domain.dll
+C:\Users\MattyMatt\Documents\GitHub\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\bin\Debug\Ttg.MvcCodeGenerator.Domain.pdb
+C:\Users\MattyMatt\Documents\GitHub\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\obj\Debug\Ttg.MvcCodeGenerator.Service.csprojResolveAssemblyReference.cache
+C:\Users\MattyMatt\Documents\GitHub\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\obj\Debug\Ttg.MvcCodeGenerator.Service.dll
+C:\Users\MattyMatt\Documents\GitHub\MvcCodeGenerator\Ttg.MvcCodeGenerator.Service\obj\Debug\Ttg.MvcCodeGenerator.Service.pdb
